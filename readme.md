@@ -1,6 +1,6 @@
 # audiowaveform-installer
 
-Ubuntu 18 binary installer of [Audiowavform](https://ffmpeg.org/) for node projects. Useful for cloud functions on Google Cloud Platform.
+Ubuntu 18 binary installer of [Audiowavform](https://github.com/bbc/audiowaveform) for node projects. Useful for cloud functions on Google Cloud Platform.
 
 Inspired by [ffmpeg-installer](https://github.com/kribblo/node-ffmpeg-installer)
 
@@ -37,4 +37,4 @@ If you get permissions issues, try adding a .npmrc file with the following:
 
     unsafe-perm=true
     
-See [issue #21](https://github.com/kribblo/node-ffmpeg-installer/issues/21)
+See [tip from ffmpeg-installer](https://github.com/kribblo/node-ffmpeg-installer/issues/21) 

@@ -1,7 +1,7 @@
 {
   "name": "audiowaveform-installer",
   "version": "1.0.0",
-  "description": "Install audiowaveform binary on Ubuntu 18. Helpful for use in Node projects Cloud Functions.",
+  "description": "Install audiowaveform binary on Ubuntu 18. Helpful for use in Node projects or Cloud Functions.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
