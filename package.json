@@ -1,0 +1,18 @@
+{
+  "name": "audiowaveform-installer",
+  "version": "1.0.0",
+  "description": "Install audiowaveform binary on Ubuntu 18. Helpful for use in Node projects Cloud Functions.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "chmod u+x ./bin/audiowaveform"
+  },
+  "keywords": [
+    "audiowaveform"
+  ],
+  "author": "https://github.com/adampatarino",
+  "license": "ISC"
+}
