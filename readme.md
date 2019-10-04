@@ -4,6 +4,8 @@ Ubuntu 18 binary installer of [Audiowavform](https://github.com/bbc/audiowavefor
 
 Inspired by [ffmpeg-installer](https://github.com/kribblo/node-ffmpeg-installer)
 
+Using version 1.3.3 of Audiowaveform
+
 ## Install
 
     npm i audiowaveform-installer
