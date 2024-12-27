@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Ensure full history is fetched to get all tags
+
+    - name: Get Latest Tag
+      id: get-latest-tag
+      run: |
+        latest_tag=$(git tag --sort=-v:refname | head -n 1 || echo "v0.0.0")
+        echo "Latest tag: $latest_tag"
+        echo "tag=$latest_tag" >> $GITHUB_ENV
+
+    - name: Calculate Next Version
+      id: calculate-version
+      run: |
+        # Extract version numbers
+        IFS='.' read -r major minor patch <<<"${tag/v/}"
+        # Increment patch number (or major/minor based on your needs)
+        patch=$((patch + 1))
+        # Generate new version
+        new_version="v$major.$minor.$patch"
+        echo "Next version: $new_version"
+        echo "new_version=$new_version" >> $GITHUB_ENV
+
+    - name: Create Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NEW_VERSION: ${{ env.new_version }}
+      run: |
+        # Create a new release using GitHub API
+        curl -X POST \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/releases \
+          -d '{
+            "tag_name": "'$NEW_VERSION'",
+            "target_commitish": "'${{ github.sha }}'",
+            "name": "'$NEW_VERSION'",
+            "body": "New release version '$NEW_VERSION'",
+            "draft": false,
+            "prerelease": false
+          }'
